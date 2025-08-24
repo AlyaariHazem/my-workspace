@@ -3,5 +3,35 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "grid-formatters": {
+      "projectType": "library",
+      "root": "projects/grid-formatters",
+      "sourceRoot": "projects/grid-formatters/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/grid-formatters/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/grid-formatters/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/grid-formatters/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    }
   }
 }

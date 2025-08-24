@@ -1,0 +1,16 @@
+{
+  "name": "grid-formatters",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^18.2.0",
+    "@angular/common": "^18.2.0",
+    "rxjs": "^7.8.0",
+    "ag-grid-community": "^31.3.0",
+    "ag-grid-angular": "^31.3.0",
+    "primeng": "17.18.15"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

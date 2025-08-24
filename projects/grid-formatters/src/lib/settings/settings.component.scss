@@ -1,0 +1,43 @@
+/* Overlay panel custom style */
+::ng-deep.settings-overlay-panel {
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  background-color: var(--surface-card);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Remove listbox border and reduce padding */
+::ng-deep.no-border .p-listbox-list {
+  border: none !important;
+  padding: 0.25rem 0;
+}
+
+/* Compact listbox item spacing */
+::ng-deep.no-border .p-listbox-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+::ng-deep .no-border .p-listbox-item.p-highlight {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+/* Label styling */
+::ng-deep label.font-semibold {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+::ng-deep .h-full {
+  height: 100% !important;
+}
+ ::ng-deep .p-listbox {
+  height: 202px!important;
+}

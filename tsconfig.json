@@ -4,6 +4,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": true,
+    "paths": {
+      "grid-formatters": [
+        "./dist/grid-formatters"
+      ]
+    },
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -22,5 +27,13 @@
     "typeCheckHostBindings": true,
     "strictTemplates": true
   },
-  "files": []
+  "files": [],
+  "references": [
+    {
+      "path": "./projects/grid-formatters/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/grid-formatters/tsconfig.spec.json"
+    }
+  ]
 }
