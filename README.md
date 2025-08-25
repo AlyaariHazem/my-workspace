@@ -1,6 +1,6 @@
 # MyWorkspace
 
-Monorepo that contains the **`grid-formatters`** Angular library:
+Monorepo that contains the **`data-trans-library`** Angular library:
 - Reusable **Settings** UI to pick Date/Time formats (with “Apply”).
 - A **SettingsService** that persists to `localStorage` and emits changes via `BehaviorSubject`.
 - AG Grid cell renderers that re-render automatically when formats change.
