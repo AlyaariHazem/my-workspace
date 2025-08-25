@@ -1,9 +1,10 @@
 <button
   pButton
-  icon="pi pi-calendar"
-  class="p-button-lg p-button-link p-button-text p-0 layout-topbar-button shadow-sm"
-  (click)="settingsOverlay.toggle($event)"
-></button>
+  type="button"
+  class="p-button-text p-button-rounded p-button-icon-only layout-topbar-button shadow-sm"
+  (click)="settingsOverlay.toggle($event)">
+  <i class="pi pi-calendar"></i>
+</button>
 
 <div>
   <p-overlayPanel
@@ -16,18 +17,16 @@
     <div class="gap-3 grid">
       <!-- Date Format -->
       <div class="p-field p-col-12">
-        <label for="dateFormat" class="font-semibold mb-2 text-center"
-          >Date Format</label
-        >
+        <label for="dateFormat" class="font-semibold mb-2 text-center">Date Format</label>
         <p-listbox
           id="dateFormat"
           [options]="dateFormats"
           [(ngModel)]="selectedDateFormat"
           (onChange)="onDateFormatChange()"
-          styleClass="no-border p-listbox-compact"
-          [showToggleAll]="true"
-        >
-        </p-listbox>
+          class="no-border p-listbox-compact"
+          [showToggleAll]="false"
+        ></p-listbox>
+
         <div class="text-center p-2 mt-2 border-round shadow">
           <strong>{{ currentDateFormatted }}</strong>
         </div>
@@ -43,22 +42,23 @@
           (onChange)="onTimeFormatChange()"
           class="no-border p-listbox-compact h-full"
           [showToggleAll]="false"
-        >
-        </p-listbox>
+        ></p-listbox>
+
         <div class="text-center p-2 mt-2 border-round shadow">
           <strong>{{ currentDateTimeFormatted }}</strong>
         </div>
       </div>
     </div>
-    @if(!applyButtonDisabled){
-      <a
-        class="align-items-center bg-primary custom-card font-bold gap-3 grid justify-content-center mt-2 p-2"
-        (click)="apply(settingsOverlay)"
 
-      >
-        <i class="pi pi-check"></i>
-        Apply
-      </a>
+    @if (!applyButtonDisabled) {
+      <!-- AFTER -->
+    <a
+      class="align-items-center bg-primary custom-card font-bold gap-3 grid justify-content-center mt-2 p-2"
+      (click)="onApply(); settingsOverlay.hide(); $event.preventDefault()"
+    >
+      <i class="pi pi-check"></i>
+      Apply
+    </a>
     }
   </p-overlayPanel>
 </div>

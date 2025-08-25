@@ -1,10 +1,5 @@
 // date-only
-import {
-  Component,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { SettingsService } from './settings/settings.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { BaseFormatRenderer } from './ag-base-format-renderer';
 import { FormatKind } from './ag-format.types';
 
@@ -16,8 +11,5 @@ import { FormatKind } from './ag-format.types';
 })
 export class DateCellRendererComponent extends BaseFormatRenderer {
   protected kind: FormatKind = 'date';
-  constructor(settings: SettingsService, cdr: ChangeDetectorRef) {
-    super(settings, cdr);
-  }
+  constructor(cdr: ChangeDetectorRef) { super(cdr); }
 }
-
