@@ -1,0 +1,3 @@
+>> ng build grid-formatters
+>> cd dist/grid-formatters
+>> npm pack
