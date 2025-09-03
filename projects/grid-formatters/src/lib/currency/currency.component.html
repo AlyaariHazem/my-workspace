@@ -1,0 +1,44 @@
+<!-- Topbar button to open the currency overlay -->
+<button
+  pButton
+  type="button"
+  class="p-button-text p-button-rounded p-button-icon-only layout-topbar-button shadow-sm"
+  (click)="currencyOverlay.toggle($event)">
+  <i class="pi pi-wallet"></i>
+</button>
+
+<!-- Currency overlay -->
+<p-overlayPanel
+  #currencyOverlay
+  appendTo="body"
+  [dismissable]="true"
+  [showCloseIcon]="true"
+  styleClass="settings-overlay-panel"
+>
+  <div class="p-field p-col-12">
+    <label for="currencyList" class="font-semibold mb-2">Currency</label>
+
+    <p-listbox
+      id="currencyList"
+      [options]="currencyOptions"
+      [(ngModel)]="selectedCurrency"
+      optionLabel="label"
+      (onChange)="onCurrencyChange()"
+      class="no-border p-listbox-compact"
+      [showToggleAll]="false"
+    ></p-listbox>
+
+    <div class="text-center p-2 mt-2 border-round shadow">
+      <strong [innerHTML]="currencyPreview"></strong>
+    </div>
+
+  </div>
+  <a
+    class="align-items-center bg-primary custom-card font-bold gap-3 grid justify-content-center mt-2 p-2"
+    (click)="onApplyCurrency(); currencyOverlay.hide(); $event.preventDefault()"
+    *ngIf="!applyCurrencyDisabled"
+  >
+    <i class="pi pi-check"></i>
+    Apply
+  </a>
+</p-overlayPanel>
