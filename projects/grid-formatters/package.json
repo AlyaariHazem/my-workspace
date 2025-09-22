@@ -1,12 +1,12 @@
 {
   "name": "data-trans-library",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "peerDependencies": {
-    "@angular/core": "^18.2.0",
-    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.13",
+    "@angular/common": "^18.2.13",
     "rxjs": "^7.8.0",
-    "ag-grid-community": "^31.3.0",
-    "ag-grid-angular": "^31.3.0",
+    "ag-grid-community": "^31.3.4",
+    "ag-grid-angular": "^31.3.4",
     "primeng": "17.18.15",
     "primeicons": "^7.0.0",
     "primeflex": "^3.3.1"
