@@ -10,4 +10,3 @@ export * from './lib/settings/index';
 export * from './lib/formatters/index';
 export * from './lib/utils/index';
 export * from './lib/currency/index';
-// export * from './lib/primeng-format/index';
