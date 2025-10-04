@@ -2,14 +2,18 @@
   "name": "data-trans-library",
   "version": "0.0.2",
   "peerDependencies": {
-    "@angular/core": "^18.2.13",
     "@angular/common": "^18.2.13",
-    "rxjs": "^7.8.0",
-    "ag-grid-community": "^31.3.4",
+    "@angular/core": "^18.2.13",
+    "@angular/material": "^18.2.13",
+    "@syncfusion/ej2-angular-calendars": "^31.1.22",
     "ag-grid-angular": "^31.3.4",
-    "primeng": "17.18.15",
+    "ag-grid-community": "^31.3.4",
+    "moment": "^2.30.1",
+    "moment-hijri": "^2.30.0",
+    "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
-    "primeflex": "^3.3.1"
+    "primeng": "17.18.15",
+    "rxjs": "^7.8.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

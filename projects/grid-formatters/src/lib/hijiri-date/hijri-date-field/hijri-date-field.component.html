@@ -1,0 +1,22 @@
+<mat-form-field appearance="outline" class="w-full dense-field">
+  <input
+    matInput
+    [matDatepicker]="pickerH"
+    [placeholder]="placeholder"
+    [min]="minMoment"
+    [max]="maxMoment"
+    [value]="value"
+    [disabled]="disabled"
+    [errorStateMatcher]="matcher"
+    (dateInput)="onInputChanged($event.value)"
+    (dateChange)="onInputChanged($event.value)"
+    (blur)="markTouched()"
+  />
+
+  <mat-datepicker-toggle matSuffix [for]="pickerH"></mat-datepicker-toggle>
+  <mat-datepicker #pickerH startView="multi-year" [panelClass]="'datepicker-on-top'"></mat-datepicker>
+  
+  @if(required && touched && !value){
+    <mat-error>This field is required.</mat-error>
+  }
+</mat-form-field>

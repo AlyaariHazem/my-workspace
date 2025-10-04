@@ -1,3 +1,9 @@
->> ng build grid-formatters
->> cd dist/grid-formatters
->> npm pack
+ng build grid-formatters
+cd dist/grid-formatters
+npm pack
+
+
+
+//in the shell
+
+npm install ./data-trans-library-0.0.2.tgz -f
