@@ -31,6 +31,7 @@
     "@types/jasmine": "~5.1.0",
     "ag-grid-angular": "^32.3.9",
     "ag-grid-community": "^32.3.9",
+    "@types/moment-hijri": "^2.1.4",
     "jasmine-core": "~5.7.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
