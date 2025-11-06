@@ -116,6 +116,36 @@
           }
         }
       }
+    },
+    "hireme-shared": {
+      "projectType": "library",
+      "root": "projects/hireme-shared",
+      "sourceRoot": "projects/hireme-shared/src",
+      "prefix": "hm",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hireme-shared/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hireme-shared/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/hireme-shared/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

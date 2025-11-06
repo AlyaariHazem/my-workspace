@@ -7,6 +7,9 @@
     "paths": {
       "grid-formatters": [
         "./dist/grid-formatters"
+      ],
+      "hireme-shared": [
+        "./dist/hireme-shared"
       ]
     },
     "noImplicitOverride": true,
@@ -40,6 +43,12 @@
     },
     {
       "path": "./projects/grid-formatters-demo/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/hireme-shared/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/hireme-shared/tsconfig.spec.json"
     }
   ]
 }
