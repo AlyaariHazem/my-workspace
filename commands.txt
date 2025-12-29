@@ -1,9 +1,34 @@
 ng build grid-formatters
 cd dist/grid-formatters
-npm pack
+cnpm pack
 
 
 
 //in the shell
 
 npm install ./data-trans-library-0.0.2.tgz -f
+
+
+// -------------- ng-nawras library --------------
+
+cd E:\Github\ng-nawras
+npx ng-packagr -p nowras-library/ng-package.json -w
+
+
+cd dist\nowras-library
+npm i -g yalc
+yalc publish
+
+cd E:\Github\ng-nawras\dist\nowras-library
+yalc push
+
+ 
+
+cd E:\Github\nawras-shell-web-fe
+yalc add nawras-library
+
+
+Whenever you change the library and it rebuilds, run:
+
+cd dist\nowras-library
+yalc push
