@@ -1,0 +1,52 @@
+/* اطبّقها على هذا الحقل فقط إن حبيت */
+.mat-mdc-form-field .mat-mdc-input-element {
+  direction: ltr;
+  text-align: left;
+}
+.cdk-overlay-pane.datepicker-on-top,
+.mat-datepicker-content.datepicker-on-top {
+  z-index: 2000 !important;
+}
+/* put Material overlays above your dialog */
+.cdk-overlay-container,
+.cdk-overlay-pane,
+.mat-datepicker-content {
+  z-index: 2000 !important;  /* higher than your dialog/backdrop */
+}
+/* Make only this field compact */
+:host ::ng-deep .dense-field .mat-mdc-text-field-wrapper {
+  height: 40px;               /* target height */
+  padding: 0 8px;             /* tighten horizontal padding */
+}
+
+:host ::ng-deep .dense-field .mat-mdc-form-field-flex {
+  height: 40px;
+}
+
+:host ::ng-deep .dense-field .mat-mdc-form-field-infix {
+  padding-top: 8px;           /* reduce vertical padding */
+  padding-bottom: 8px;
+  min-height: 0;              /* allow the smaller height */
+}
+
+/* shrink the toggle button so it doesn’t force height */
+:host ::ng-deep .dense-field .mat-mdc-icon-button.mat-mdc-button-base {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+
+/* optional: reduce the subscript/error spacing too */
+:host ::ng-deep .dense-field .mat-mdc-form-field-subscript-wrapper {
+  margin-top: 2px;
+}
+/* Component stylesheet */
+:host ::ng-deep input.mat-mdc-input-element:not(:placeholder-shown)::placeholder {
+  opacity: 0;   /* or color: transparent; */
+}
+
+:host ::ng-deep .dense-field .mat-mdc-input-element{ font-size:13px; line-height:1.25rem; }
+:host ::ng-deep .dense-field .mat-mdc-text-field-wrapper{ height:40px; }
+:host ::ng-deep .dense-field .mat-mdc-form-field-infix{ padding-top:6px!important; padding-bottom:6px!important; min-height:40px; }
+:host ::ng-deep .dense-field .mat-mdc-form-field-icon-suffix{ padding:0 4px; }
+:host ::ng-deep .dense-field .mat-mdc-icon-button.mat-mdc-button-base{ width:32px; height:32px; }

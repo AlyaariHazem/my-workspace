@@ -146,6 +146,36 @@
           }
         }
       }
+    },
+    "hijri-date": {
+      "projectType": "library",
+      "root": "projects/hijri-date",
+      "sourceRoot": "projects/hijri-date/src",
+      "prefix": "dt",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/hijri-date/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/hijri-date/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/hijri-date/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }

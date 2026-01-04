@@ -1,6 +1,13 @@
 {
-  "name": "data-trans-library",
+   "name": "data-trans-library",
   "version": "0.0.2",
+  "description": "Shared Angular UI components for ...",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<org>/<repo>.git"
+  },
+  "keywords": ["angular", "library", "components"],
   "peerDependencies": {
     "@angular/common": "^18.2.13",
     "@angular/core": "^18.2.13",

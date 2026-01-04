@@ -26,6 +26,7 @@ yalc push
 
 cd E:\Github\nawras-shell-web-fe
 yalc add nawras-library
+npx ng serve  -c development            
 
 
 Whenever you change the library and it rebuilds, run:

@@ -8,6 +8,9 @@
       "grid-formatters": [
         "./dist/grid-formatters"
       ],
+      "hijri-date": [
+        "./dist/hijri-date"
+      ],
       "hireme-shared": [
         "./dist/hireme-shared"
       ]
@@ -49,6 +52,12 @@
     },
     {
       "path": "./projects/hireme-shared/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/hijri-date/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/hijri-date/tsconfig.spec.json"
     }
   ]
 }
