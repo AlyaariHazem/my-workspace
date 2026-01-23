@@ -1,5 +1,5 @@
 {
-  "name": "hijiri-date",
+  "name": "hijiri-calendar",
   "version": "0.0.2",
   "description": "Angular Hijri (Islamic) date utilities built on top of moment-hijri",
   "license": "MIT",
