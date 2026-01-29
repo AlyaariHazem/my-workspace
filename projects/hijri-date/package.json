@@ -1,6 +1,6 @@
 {
   "name": "hijiri-calendar",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Angular Hijri (Islamic) date utilities built on top of moment-hijri",
   "license": "MIT",
   "homepage": "https://github.com/AlyaariHazem",
@@ -37,5 +37,11 @@
   },
   "engines": {
     "node": ">=18.19.0"
-  }
+  },
+  "files": [
+    "README.md",
+    "package.json",
+    "fesm2022",
+    "index.d.ts"
+  ]
 }

@@ -1,5 +1,9 @@
 # hijiri-date
 
+![npm total downloads](https://img.shields.io/npm/dt/hijiri-calendar)
+![npm downloads (month)](https://img.shields.io/npm/dm/hijiri-calendar)
+![npm downloads (year)](https://img.shields.io/npm/dy/hijiri-calendar)
+
 A small Angular library that adds **hijiri (Islamic) date support** to your Angular forms.
 
 It gives you:
