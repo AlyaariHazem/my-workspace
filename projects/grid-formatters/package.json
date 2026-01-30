@@ -1,7 +1,7 @@
 {
    "name": "data-trans-library",
   "version": "0.0.4",
-  "description": "Production-ready Angular date/time formatting for AG Grid with live, user-configurable formats. Reactive cell renderers with cross-tab sync, localStorage persistence, and Hijri calendar support.",
+  "description": "Production-ready Angular date/time formatting for AG Grid with live, user-configurable formats. Reactive cell renderers with cross-tab sync, LocalStorage persistence, and Hijri calendar support.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
     "i18n",
     "grid",
     "datatable",
-    "localstorage",
+    "localStorage",
     "angular18",
     "angular19",
     "angular20",

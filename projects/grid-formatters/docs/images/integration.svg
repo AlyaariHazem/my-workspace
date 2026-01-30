@@ -40,7 +40,7 @@
   <text x="95" y="260" class="code">} from 'data-trans-library';</text>
   
   <text x="95" y="280" class="small" font-weight="bold">✓ Standalone components</text>
-  <text x="95" y="295" class="small">✓ No NgModule needed (v14+)</text>
+  <text x="95" y="295" class="small">✓ No NgModule needed (v18+)</text>
   <text x="95" y="310" class="small">✓ Tree-shakable</text>
 
   <!-- Settings Component -->

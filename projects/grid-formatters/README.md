@@ -144,22 +144,11 @@ export class AppComponent {
 }
 ```
 
-### 2. Use with NgModule (Angular < 14)
-
-```typescript
-import { NgModule } from '@angular/core';
-import { SettingsModule } from 'data-trans-library';
-
-@NgModule({
-  imports: [SettingsModule],
-  // ...
-})
-export class AppModule {}
-```
-
-### 3. That's it! 🎉
+### 2. That's it! 🎉
 
 Users can now change date/time formats via the Settings UI, and all cells update automatically.
+
+> **Note**: For older Angular apps using NgModule (uncommon with v18+), import `SettingsModule` from `data-trans-library`.
 
 ---
 
@@ -662,7 +651,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - 🐛 **Issues**: [GitHub Issues](https://github.com/AlyaariHazem/my-workspace/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/AlyaariHazem/my-workspace/discussions)
-- 📧 **Email**: [Your contact email]
 - 📖 **Documentation**: [Full Docs](https://github.com/AlyaariHazem/my-workspace/tree/main/projects/grid-formatters)
 
 ---
