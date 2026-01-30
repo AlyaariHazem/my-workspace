@@ -24,7 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Features
 - Reactive date/time cell renderers for AG Grid
 - Settings UI component with live preview
-- LocalStorage persistence
+- localStorage persistence
 - Cross-tab synchronization
 - Hijri calendar support
 - Currency formatting
