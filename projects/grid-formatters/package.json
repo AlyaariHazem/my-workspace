@@ -1,26 +1,66 @@
 {
    "name": "data-trans-library",
   "version": "0.0.4",
-  "description": "Shared Angular UI components for ...",
+  "description": "Production-ready Angular date/time formatting for AG Grid with live, user-configurable formats. Reactive cell renderers with cross-tab sync, localStorage persistence, and Hijri calendar support.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<org>/<repo>.git"
+    "url": "https://github.com/AlyaariHazem/my-workspace.git"
   },
-  "keywords": ["angular", "library", "components"],
+  "keywords": [
+    "angular",
+    "ag-grid",
+    "date-formatting",
+    "time-formatting",
+    "cell-renderer",
+    "reactive",
+    "datetime",
+    "hijri",
+    "calendar",
+    "localization",
+    "l10n",
+    "i18n",
+    "grid",
+    "datatable",
+    "localStorage",
+    "angular18",
+    "angular19",
+    "angular20",
+    "typescript"
+  ],
   "peerDependencies": {
     "@angular/common": "^18.2.13",
     "@angular/core": "^18.2.13",
     "@angular/material": "^18.2.13",
-    "@syncfusion/ej2-angular-calendars": "^31.1.22",
     "ag-grid-angular": "^31.3.4",
     "ag-grid-community": "^31.3.4",
+    "rxjs": "^7.8.0",
+    "@syncfusion/ej2-angular-calendars": "^31.1.22",
     "moment": "^2.30.1",
     "moment-hijri": "^2.30.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
-    "primeng": "17.18.15",
-    "rxjs": "^7.8.0"
+    "primeng": "17.18.15"
+  },
+  "peerDependenciesMeta": {
+    "@syncfusion/ej2-angular-calendars": {
+      "optional": true
+    },
+    "moment": {
+      "optional": true
+    },
+    "moment-hijri": {
+      "optional": true
+    },
+    "primeflex": {
+      "optional": true
+    },
+    "primeicons": {
+      "optional": true
+    },
+    "primeng": {
+      "optional": true
+    }
   },
   "dependencies": {
     "tslib": "^2.3.0"

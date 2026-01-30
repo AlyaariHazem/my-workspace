@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650">
+  <defs>
+    <style>
+      .angular { fill: #fce4ec; stroke: #c2185b; stroke-width: 2; }
+      .aggrid { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 2; }
+      .library { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .text { font-family: Arial, sans-serif; font-size: 14px; fill: #333; }
+      .title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #1976d2; }
+      .small { font-family: Arial, sans-serif; font-size: 12px; fill: #666; }
+      .code { font-family: 'Courier New', monospace; font-size: 11px; fill: #d32f2f; }
+      .arrow { stroke: #555; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .bi-arrow { stroke: #555; stroke-width: 2; fill: none; marker-end: url(#arrowhead); marker-start: url(#arrowback); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#555" />
+    </marker>
+    <marker id="arrowback" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+      <polygon points="10 0, 0 3, 10 6" fill="#555" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="500" y="30" text-anchor="middle" class="title" font-size="20">Angular + AG Grid Integration</text>
+  <text x="500" y="50" text-anchor="middle" class="small">Using data-trans-library for dynamic date/time formatting</text>
+
+  <!-- Angular App Container -->
+  <rect x="50" y="80" width="900" height="520" rx="5" fill="none" stroke="#c2185b" stroke-width="2" stroke-dasharray="10,5"/>
+  <text x="60" y="100" class="title" fill="#c2185b">Angular Application</text>
+
+  <!-- Left Side: Module Setup -->
+  <rect x="80" y="120" width="280" height="200" rx="5" class="angular"/>
+  <text x="220" y="145" text-anchor="middle" class="title">app.component.ts</text>
+  
+  <text x="95" y="170" class="code">import { Component } from '@angular/core';</text>
+  <text x="95" y="185" class="code">import { AgGridAngular } from 'ag-grid-angular';</text>
+  <text x="95" y="200" class="code">import {</text>
+  <text x="105" y="215" class="code">  DateCellRendererComponent,</text>
+  <text x="105" y="230" class="code">  TimeCellRendererComponent,</text>
+  <text x="105" y="245" class="code">  SettingsComponent</text>
+  <text x="95" y="260" class="code">} from 'data-trans-library';</text>
+  
+  <text x="95" y="280" class="small" font-weight="bold">✓ Standalone components</text>
+  <text x="95" y="295" class="small">✓ No NgModule needed (v18+)</text>
+  <text x="95" y="310" class="small">✓ Tree-shakable</text>
+
+  <!-- Settings Component -->
+  <rect x="80" y="340" width="280" height="110" rx="5" class="library"/>
+  <text x="220" y="365" text-anchor="middle" class="title">Settings Component</text>
+  
+  <text x="95" y="385" class="code">&lt;app-settings&gt;&lt;/app-settings&gt;</text>
+  
+  <text x="95" y="405" class="small">Provides:</text>
+  <text x="105" y="420" class="small">• Date format dropdown</text>
+  <text x="105" y="435" class="small">• Time format dropdown</text>
+  <text x="105" y="450" class="small">• Live preview</text>
+
+  <!-- Right Side: AG Grid Setup -->
+  <rect x="400" y="120" width="530" height="330" rx="5" class="aggrid"/>
+  <text x="665" y="145" text-anchor="middle" class="title">AG Grid Configuration</text>
+  
+  <!-- Column Definitions -->
+  <rect x="420" y="160" width="490" height="280" rx="5" fill="white" stroke="#2e7d32" stroke-width="1"/>
+  <text x="430" y="180" class="code">columnDefs: ColDef[] = [</text>
+  
+  <!-- Date Column -->
+  <rect x="440" y="190" width="450" height="60" rx="3" fill="#f1f8e9" stroke="#689f38" stroke-width="1"/>
+  <text x="450" y="205" class="code">  {</text>
+  <text x="450" y="220" class="code">    field: 'createdDate',</text>
+  <text x="450" y="235" class="code">    cellRenderer: DateCellRendererComponent,</text>
+  <text x="450" y="250" class="code">  },</text>
+
+  <!-- Time Column -->
+  <rect x="440" y="260" width="450" height="60" rx="3" fill="#e8f5e9" stroke="#43a047" stroke-width="1"/>
+  <text x="450" y="275" class="code">  {</text>
+  <text x="450" y="290" class="code">    field: 'timestamp',</text>
+  <text x="450" y="305" class="code">    cellRenderer: TimeCellRendererComponent,</text>
+  <text x="450" y="320" class="code">  },</text>
+
+  <!-- DateTime with override -->
+  <rect x="440" y="330" width="450" height="75" rx="3" fill="#e0f2f1" stroke="#00897b" stroke-width="1"/>
+  <text x="450" y="345" class="code">  {</text>
+  <text x="450" y="360" class="code">    field: 'lastModified',</text>
+  <text x="450" y="375" class="code">    cellRenderer: DateOrDateTimeCellRendererComponent,</text>
+  <text x="450" y="390" class="code">    cellRendererParams: { fmt: 'dd MMM yyyy HH:mm' }</text>
+  <text x="450" y="405" class="code">  },</text>
+  
+  <text x="430" y="425" class="code">];</text>
+
+  <!-- Bottom: Runtime Behavior -->
+  <rect x="80" y="480" width="850" height="100" rx="5" fill="#fff3e0" stroke="#f57c00" stroke-width="2"/>
+  <text x="100" y="505" class="title">Runtime Behavior</text>
+  
+  <text x="100" y="530" class="small">1. User selects new format in Settings UI → SettingsService saves to localStorage</text>
+  <text x="100" y="548" class="small">2. Custom event dispatched → All cell renderers listen via @HostListener</text>
+  <text x="100" y="566" class="small">3. Renderers re-format their values → Angular ChangeDetection triggers (OnPush strategy)</text>
+
+  <!-- Arrows showing flow -->
+  <path d="M 220 320 L 220 340" class="arrow"/>
+  <path d="M 360 395 L 400 395" class="arrow"/>
+  
+  <!-- Bi-directional arrow for reactive updates -->
+  <path d="M 220 450 L 220 480" class="arrow"/>
+  <text x="230" y="468" class="small">Dispatches events</text>
+  
+  <path d="M 665 450 L 665 480" class="arrow"/>
+  <text x="675" y="468" class="small">Listens for updates</text>
+
+  <!-- Legend -->
+  <rect x="50" y="610" width="900" height="30" rx="5" fill="#fafafa" stroke="#ddd" stroke-width="1"/>
+  <text x="60" y="628" class="small" font-weight="bold">Quick Start:</text>
+  <text x="140" y="628" class="small">1. Import components</text>
+  <text x="280" y="628" class="small">2. Add Settings UI to template</text>
+  <text x="460" y="628" class="small">3. Assign cell renderers to columns</text>
+  <text x="680" y="628" class="small">4. Enjoy auto-formatting! 🎉</text>
+</svg>

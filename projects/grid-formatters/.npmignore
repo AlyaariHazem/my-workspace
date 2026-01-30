@@ -1,0 +1,40 @@
+# Development files
+*.spec.ts
+*.spec.js
+**/*.spec.ts
+**/*.spec.js
+*.map
+tsconfig.spec.json
+karma.conf.js
+
+# Source files (ng-packagr will handle compilation)
+src/
+
+# Test files
+coverage/
+.nyc_output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tgz
+.angular/
+.tsbuildinfo
+
+# Documentation source (keep compiled README)
+docs/source/
+
+# Misc
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
