@@ -84,7 +84,7 @@ Many applications serving Muslim-majority regions need to support the **Hijri (I
 
 ### Features
 
-- **Hijri Date Field Component** — Ready-to-use `<lib-hijiri-date-field>` component for Angular forms
+- **Hijri Date Field Component** — Ready-to-use `<lib-hijri-date-field>` component for Angular forms
 - **Strong Validation** — Built-in validators for:
   - Required fields
   - Correct Hijri format (`DD/MM/YYYY` → `10/04/1447`)
