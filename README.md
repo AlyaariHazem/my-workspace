@@ -68,7 +68,10 @@ Formatting dates, times, and currencies in AG Grid is tedious and often hard-cod
 ## 🔹 hijiri-calendar
 
 **Package:** `hijiri-calendar`  
-**Published as:** `hijiri-calendar` on npm
+**Published as:** `hijiri-calendar` on npm  
+**Angular project name:** `hijri-date`
+
+> **Note:** The npm package uses the spelling "hijiri-calendar" while the Angular project directory is "hijri-date". Both spellings are used for the Islamic calendar in English transliteration.
 
 ### What It Solves
 
