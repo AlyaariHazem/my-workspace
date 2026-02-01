@@ -1,8 +1,9 @@
 {
-   "name": "data-trans-library",
-  "version": "0.0.4",
-  "description": "Production-ready Angular date/time formatting for AG Grid with live, user-configurable formats. Reactive cell renderers with cross-tab sync, localStorage persistence, and Hijri calendar support.",
+  "name": "ag-grid-formatters",
+  "version": "0.0.5",
+  "description": "Comprehensive Angular library providing AG-Grid cell renderers and utilities for formatting dates, times, currencies with global settings, cross-tab synchronization, and persistent user preferences",
   "license": "MIT",
+  "homepage": "https://github.com/AlyaariHazem/my-workspace",
   "repository": {
     "type": "git",
     "url": "https://github.com/AlyaariHazem/my-workspace.git"
@@ -10,23 +11,14 @@
   "keywords": [
     "angular",
     "ag-grid",
+    "cell-renderer",
     "date-formatting",
     "time-formatting",
-    "cell-renderer",
-    "reactive",
-    "datetime",
-    "hijri",
-    "calendar",
+    "currency-formatting",
     "localization",
-    "l10n",
-    "i18n",
-    "grid",
-    "datatable",
-    "localStorage",
-    "angular18",
-    "angular19",
-    "angular20",
-    "typescript"
+    "timezone",
+    "grid-formatters",
+    "data-transformation"
   ],
   "peerDependencies": {
     "@angular/common": "^18.2.13",
@@ -65,5 +57,11 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "files": [
+    "README.md",
+    "package.json",
+    "fesm2022",
+    "index.d.ts"
+  ]
 }

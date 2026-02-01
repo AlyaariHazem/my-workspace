@@ -1,664 +1,467 @@
-# 📅 data-trans-library
+# ag-grid-formatters
 
-**Production-ready Angular date/time formatting for AG Grid with live, user-configurable formats**
+![npm total downloads](https://img.shields.io/npm/dt/ag-grid-formatters)
+![npm downloads (month)](https://img.shields.io/npm/dm/ag-grid-formatters)
+![npm downloads (year)](https://img.shields.io/npm/dy/ag-grid-formatters)
 
-[![npm version](https://img.shields.io/npm/v/data-trans-library.svg)](https://www.npmjs.com/package/data-trans-library)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Angular](https://img.shields.io/badge/Angular-v18--v20-red.svg)](https://angular.io/)
-[![AG Grid](https://img.shields.io/badge/AG_Grid-v31--v32-green.svg)](https://www.ag-grid.com/)
-
----
-
-## 🎯 Problem
-
-Enterprise applications often need to display dates and times in different formats based on:
-- **User preferences** (US vs EU date formats, 12h vs 24h time)
-- **Regional standards** (different locales, calendars like Hijri)
-- **Business requirements** (specific column formats)
-
-Traditional solutions require:
-- ❌ Hard-coding formats in every cell renderer
-- ❌ Manual grid refresh when settings change
-- ❌ Complex state management across components
-- ❌ Rebuilding the app for different markets
-
-**data-trans-library** solves this with **zero-config reactive formatting** that:
-- ✅ Updates all cells instantly when user changes format
-- ✅ Persists preferences across sessions
-- ✅ Syncs format changes across browser tabs
-- ✅ Works seamlessly with AG Grid's virtual scrolling
-- ✅ Supports multiple calendar systems (Gregorian, Hijri)
+A comprehensive Angular library providing **AG-Grid cell renderers** and **utilities** for formatting dates, times, currencies, and more. Features global format settings that persist across tabs and sessions, with real-time updates.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔄 **Reactive Formatting** - Cell renderers auto-update when formats change (no manual refresh)
-- 💾 **Persistent Settings** - User preferences saved to localStorage
-- 🌐 **Cross-Tab Sync** - Format changes propagate to all browser tabs instantly
-- 🎨 **Settings UI** - Drop-in component with live preview
-- ⚡ **Optimized Performance** - OnPush change detection, no unnecessary re-renders
-- 📅 **Multiple Calendars** - Hijri calendar support with moment-hijri
-- 💰 **Currency Formatting** - Locale-aware currency display
-- 🔧 **Column Overrides** - Per-column format customization
-- 🌍 **Timezone Support** - Display dates in any timezone
-- 🎯 **Type-Safe** - Full TypeScript support
-- 📦 **Tree-Shakable** - Standalone components, import only what you need
-- 🧪 **Well-Tested** - Comprehensive test coverage
+- 📅 **Date/Time/DateTime Cell Renderers** - Flexible date formatting for AG-Grid with timezone support
+- 💰 **Currency Cell Renderer** - Multi-currency support with locale-aware formatting
+- ⚙️ **Global Settings Component** - User-configurable date/time formats with live preview
+- 🔄 **Cross-tab Synchronization** - Format changes sync across browser tabs automatically
+- 💾 **Persistent Settings** - User preferences saved in localStorage
+- 🎨 **Standalone Components** - All components are standalone, no module imports needed
+- 🛠️ **Utility Functions** - Date formatting utilities and pipes for use outside AG-Grid
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
-npm install data-trans-library
+npm install ag-grid-formatters
 ```
-
-### Peer Dependencies
-
-Ensure you have the following installed:
-
-```json
-{
-  "@angular/common": "^18.0.0 || ^19.0.0 || ^20.0.0",
-  "@angular/core": "^18.0.0 || ^19.0.0 || ^20.0.0",
-  "@angular/material": "^18.0.0",
-  "ag-grid-angular": "^31.0.0 || ^32.0.0",
-  "ag-grid-community": "^31.0.0 || ^32.0.0",
-  "rxjs": "^7.0.0"
-}
-```
-
-**Optional** (for additional features):
-- `moment`: ^2.30.0 - For advanced date manipulation
-- `moment-hijri`: ^2.30.0 - For Hijri calendar support
-- `primeng`: ^17.0.0 - For PrimeNG integration
-- `@syncfusion/ej2-angular-calendars`: ^31.0.0 - For Syncfusion calendar widgets
 
 ---
 
-## 🚀 Quick Start
+## Peer Dependencies
 
-### 1. Import Components
+This library requires the following peer dependencies (you must install them in your application):
+
+```bash
+npm install @angular/common@^18.2.13 @angular/core@^18.2.13 @angular/material@^18.2.13
+npm install ag-grid-angular@^31.3.4 ag-grid-community@^31.3.4
+npm install moment@^2.30.1 moment-hijri@^2.30.0
+npm install @syncfusion/ej2-angular-calendars@^31.1.22
+npm install primeng@17.18.15 primeicons@^7.0.0 primeflex@^3.3.1
+npm install rxjs@^7.8.0
+```
+
+---
+
+## Quick Start
+
+### 1. Date/Time Cell Renderers
+
+Use the cell renderers in your AG-Grid column definitions:
 
 ```typescript
-// app.component.ts
-import { Component } from '@angular/core';
-import { AgGridAngular } from 'ag-grid-angular';
-import { ColDef } from 'ag-grid-community';
-import {
+import { 
   DateCellRendererComponent,
   TimeCellRendererComponent,
-  DateOrDateTimeCellRendererComponent,
-  SettingsComponent
-} from 'data-trans-library';
+  DateTimeCellRendererComponent 
+} from 'ag-grid-formatters';
 
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    AgGridAngular,
-    DateCellRendererComponent,
-    TimeCellRendererComponent,
-    SettingsComponent
-  ],
-  template: `
-    <!-- Settings UI -->
-    <app-settings></app-settings>
-    
-    <!-- Your AG Grid -->
-    <ag-grid-angular
-      [rowData]="rowData"
-      [columnDefs]="columnDefs"
-      class="ag-theme-alpine"
-      style="height: 500px;">
-    </ag-grid-angular>
-  `
-})
-export class AppComponent {
-  rowData = [
-    {
-      createdDate: '2024-01-15',
-      timestamp: 1705305600000,
-      lastModified: '2024-01-15T14:30:00Z'
-    }
-  ];
-
-  columnDefs: ColDef[] = [
-    {
-      field: 'createdDate',
-      headerName: 'Created',
-      cellRenderer: DateCellRendererComponent
-    },
-    {
-      field: 'timestamp',
-      headerName: 'Time',
-      cellRenderer: TimeCellRendererComponent
-    },
-    {
-      field: 'lastModified',
-      headerName: 'Last Modified',
-      cellRenderer: DateOrDateTimeCellRendererComponent
-    }
-  ];
-}
-```
-
-### 2. That's it! 🎉
-
-Users can now change date/time formats via the Settings UI, and all cells update automatically.
-
-> **Note**: For older Angular apps using NgModule (uncommon with v18+), import `SettingsModule` from `data-trans-library`.
-
----
-
-## 📖 Usage Examples
-
-### Basic Date Formatting
-
-```typescript
-columnDefs: ColDef[] = [
+// In your component
+columnDefs = [
   {
-    field: 'birthDate',
-    cellRenderer: DateCellRendererComponent
-    // Uses user's selected format from Settings UI
-    // Default: 'yyyy-MM-dd'
+    field: 'createdAt',
+    cellRenderer: DateCellRendererComponent,
+    // Optional: override format per column
+    cellRendererParams: {
+      fmt: 'dd/MM/yyyy',           // Combined format
+      // OR separate formats:
+      dateFormat: 'dd/MM/yyyy',
+      timeFormat: 'HH:mm',
+      // Optional: timezone
+      tz: 'Asia/Riyadh'
+    }
+  },
+  {
+    field: 'startTime',
+    cellRenderer: TimeCellRendererComponent,
+    cellRendererParams: {
+      fmt: 'hh:mm a'  // 12-hour format
+    }
+  },
+  {
+    field: 'updatedAt',
+    cellRenderer: DateTimeCellRendererComponent,
+    cellRendererParams: {
+      dateFormat: 'yyyy-MM-dd',
+      timeFormat: 'HH:mm:ss',
+      tz: 'UTC'
+    }
   }
 ];
 ```
 
-### Custom Format Override
+### 2. Currency Cell Renderer
 
 ```typescript
-{
-  field: 'eventDate',
-  cellRenderer: DateCellRendererComponent,
-  cellRendererParams: {
-    fmt: 'dd MMM yyyy'  // Always displays as "15 Jan 2024"
+import { CurrencyCellRendererComponent } from 'ag-grid-formatters';
+
+columnDefs = [
+  {
+    field: 'amount',
+    cellRenderer: CurrencyCellRendererComponent,
+    cellRendererParams: {
+      // Optional: override currency code and locale per column
+      currencyCode: 'USD',      // null = no currency symbol
+      currencyLocale: 'en-US',  // Locale for number formatting
+      minFractionDigits: 2,
+      maxFractionDigits: 2,
+      useGrouping: true
+    }
   }
-}
+];
 ```
 
-### DateTime with Timezone
+### 3. Settings Component
+
+Add the settings component to allow users to configure global date/time formats:
 
 ```typescript
-{
-  field: 'scheduledAt',
-  cellRenderer: DateOrDateTimeCellRendererComponent,
-  cellRendererParams: {
-    fmt: 'yyyy-MM-dd HH:mm',
-    timezone: 'America/New_York'  // or 'UTC', 'Asia/Dubai', etc.
-  }
-}
+import { SettingsModule } from 'ag-grid-formatters';
+
+// In your module
+imports: [
+  SettingsModule,
+  // ... other imports
+]
 ```
 
-### Legacy Format Support
-
-```typescript
-{
-  field: 'date',
-  cellRenderer: DateCellRendererComponent,
-  cellRendererParams: {
-    dateFormat: 'MM/dd/yyyy',  // Still supported
-    // or dateFmt: 'MM/dd/yyyy'
-  }
-}
+```html
+<!-- In your template -->
+<app-settings></app-settings>
 ```
 
-### Time-Only Formatting
+The settings component:
+- Provides a UI to select date and time formats
+- Shows live preview of selected formats
+- Persists preferences to localStorage
+- Broadcasts changes to all AG-Grid renderers in the same tab
+- Syncs across browser tabs via storage events
+
+### 4. Utility Functions
+
+Use the date formatting utilities outside of AG-Grid:
 
 ```typescript
-{
-  field: 'clockIn',
-  cellRenderer: TimeCellRendererComponent,
-  cellRendererParams: {
-    fmt: 'hh:mm a'  // 12-hour format with AM/PM
-  }
-}
+import { formatDateValue } from 'ag-grid-formatters';
+
+// Format a date value
+const formatted = formatDateValue(new Date(), {
+  kind: 'date',
+  fmt: 'dd/MM/yyyy'
+});
+
+// With timezone
+const formattedWithTz = formatDateValue('2024-01-15T10:30:00Z', {
+  fmt: 'yyyy-MM-dd HH:mm',
+  tz: 'Asia/Riyadh'
+});
 ```
 
-### Currency Formatting
+### 5. Date Format Pipe
+
+Use the `fmtDate` pipe in templates:
 
 ```typescript
-import { CurrencyCellRendererComponent } from 'data-trans-library';
+import { FmtDatePipe } from 'ag-grid-formatters';
 
-{
-  field: 'price',
-  cellRenderer: CurrencyCellRendererComponent,
-  cellRendererParams: {
-    currencyCode: 'USD',
-    locale: 'en-US'
-  }
-}
+// In your component
+imports: [FmtDatePipe]
 ```
 
-### Hijri Calendar
-
-```typescript
-import { HijriDateFieldComponent } from 'data-trans-library';
-
-// In your template
-<hijri-date-field
-  [(ngModel)]="selectedDate"
-  [format]="'iYYYY/iMM/iDD'">
-</hijri-date-field>
+```html
+<!-- In your template -->
+<div>{{ myDate | fmtDate: { kind: 'date', fmt: 'dd/MM/yyyy' } }}</div>
+<div>{{ myDateTime | fmtDate: { tz: 'Asia/Riyadh' } }}</div>
 ```
 
 ---
 
-## ⚙️ Configuration
+## Format Resolution Priority
 
-### Available Date Formats
+The library uses the following priority order for format resolution:
 
-The Settings UI provides these date formats out of the box:
+1. **Column-level params** (highest priority)
+   - `fmt` - Combined format string
+   - `dateFormat` / `timeFormat` - Separate formats
+   - `tz` - Timezone override
 
-| Format | Example Output |
-|--------|----------------|
-| `yyyy-MM-dd` | 2024-01-15 |
-| `dd/MM/yyyy` | 15/01/2024 |
-| `MM/dd/yyyy` | 01/15/2024 |
-| `yyyy/MM/dd` | 2024/01/15 |
-| `dd-MM-yyyy` | 15-01-2024 |
-| `MM-dd-yyyy` | 01-15-2024 |
-| `dd MMM yyyy` | 15 Jan 2024 |
-| `MMM dd, yyyy` | Jan 15, 2024 |
+2. **LocalStorage** (user preferences from Settings component)
+   - `selectedDateFormat`
+   - `selectedDateTimeFormat`
 
-### Available Time Formats
+3. **Defaults** (lowest priority)
+   - Date: `'yyyy-MM-dd'`
+   - Time: `'HH:mm'`
 
-| Format | Example Output |
-|--------|----------------|
-| `HH:mm:ss` | 14:30:00 |
-| `HH:mm` | 14:30 |
-| `hh:mm:ss a` | 02:30:00 PM |
-| `hh:mm a` | 02:30 PM |
+---
 
-### Programmatic Access
+## Date Format Options
+
+### Date Formats
+- `'yyyy-MM-dd'` - ISO format (2024-01-15)
+- `'dd/MM/yyyy'` - European format (15/01/2024)
+- `'MM/dd/yyyy'` - US format (01/15/2024)
+- `'dd-MM-yyyy'` - Dash format (15-01-2024)
+- `'dd MMM yyyy'` - Text format (15 Jan 2024)
+- `'MMM dd, yyyy'` - US text format (Jan 15, 2024)
+
+### Time Formats
+- `'HH:mm:ss'` - 24-hour with seconds (14:30:45)
+- `'HH:mm'` - 24-hour (14:30)
+- `'hh:mm:ss a'` - 12-hour with seconds (02:30:45 PM)
+- `'hh:mm a'` - 12-hour (02:30 PM)
+
+### Combined Formats
+You can combine date and time formats:
+- `'dd/MM/yyyy HH:mm'` - European with 24-hour time
+- `'MM/dd/yyyy hh:mm a'` - US with 12-hour time
+
+---
+
+## Currency Formatting
+
+### Supported Parameters
+
+- `currencyCode` - ISO currency code (e.g., 'SAR', 'USD', 'EUR') or `null` for no symbol
+- `currencyLocale` - BCP 47 locale string (e.g., 'ar-SA', 'en-US')
+- `minFractionDigits` - Minimum decimal places (default: 0)
+- `maxFractionDigits` - Maximum decimal places (default: 2)
+- `useGrouping` - Enable thousand separators (default: true)
+
+### Examples
 
 ```typescript
-import { SettingsService } from 'data-trans-library';
+// Saudi Riyal with Arabic locale
+{
+  currencyCode: 'SAR',
+  currencyLocale: 'ar-SA',
+  minFractionDigits: 2,
+  maxFractionDigits: 2
+}
 
-@Component({...})
-export class MyComponent {
-  constructor(private settings: SettingsService) {}
+// US Dollar with English locale
+{
+  currencyCode: 'USD',
+  currencyLocale: 'en-US',
+  minFractionDigits: 2,
+  maxFractionDigits: 2
+}
 
-  updateFormats() {
-    // Get current formats
-    const dateFormat = this.settings.getDateFormat();
-    const timeFormat = this.settings.getDateTimeFormat();
-
-    // Set new formats
-    this.settings.setDateFormat('dd/MM/yyyy');
-    this.settings.setDateTimeFormat('HH:mm:ss');
-  }
+// Number without currency symbol
+{
+  currencyCode: null,
+  currencyLocale: 'en-US',
+  minFractionDigits: 0,
+  maxFractionDigits: 2
 }
 ```
 
-### Column Renderer Parameters
+---
 
-All cell renderers accept these parameters:
+## Timezone Support
+
+All date/time renderers support timezone conversion using IANA timezone identifiers:
+
+```typescript
+cellRendererParams: {
+  tz: 'Asia/Riyadh',  // Saudi Arabia
+  // or
+  tz: 'UTC',
+  // or
+  tz: 'America/New_York',
+  // or null/undefined/'local' for browser local time
+}
+```
+
+---
+
+## API Reference
+
+### Cell Renderers
+
+#### `DateCellRendererComponent`
+Renders date-only values.
+
+**Params:**
+- `fmt?: string` - Combined format string
+- `dateFormat?: string` - Date format override
+- `tz?: string | null` - Timezone override
+
+#### `TimeCellRendererComponent`
+Renders time-only values.
+
+**Params:**
+- `fmt?: string` - Combined format string
+- `timeFormat?: string` - Time format override
+- `tz?: string | null` - Timezone override
+
+#### `DateTimeCellRendererComponent`
+Renders date and time values.
+
+**Params:**
+- `fmt?: string` - Combined format string
+- `dateFormat?: string` - Date format override
+- `timeFormat?: string` - Time format override
+- `tz?: string | null` - Timezone override
+
+#### `CurrencyCellRendererComponent`
+Renders currency values.
+
+**Params:**
+- `currencyCode?: string | null` - ISO currency code
+- `currencyLocale?: string` - BCP 47 locale
+- `minFractionDigits?: number` - Min decimal places
+- `maxFractionDigits?: number` - Max decimal places
+- `useGrouping?: boolean` - Enable grouping
+
+### Utility Functions
+
+#### `formatDateValue(value: any, opts?: FormatDateOptions): string`
+Formats a date value using the same logic as the cell renderers.
+
+**Parameters:**
+- `value` - Date value (Date, string, number, etc.)
+- `opts` - Formatting options (same as cell renderer params)
+
+**Returns:** Formatted date string
+
+### Pipes
+
+#### `FmtDatePipe`
+Standalone pipe for formatting dates in templates.
+
+**Usage:**
+```html
+{{ dateValue | fmtDate: { kind: 'date', fmt: 'dd/MM/yyyy' } }}
+```
+
+### Services
+
+#### `SettingsService`
+Service for managing date/time format preferences.
+
+**Methods:**
+- `getDateFormat(): string` - Get current date format
+- `setDateFormat(format: string): void` - Set date format
+- `getDateTimeFormat(): string` - Get current time format
+- `setDateTimeFormat(format: string): void` - Set time format
+
+---
+
+## Type Definitions
 
 ```typescript
 interface BaseFormatParams {
-  /** Single combined format (highest priority) */
-  fmt?: string;
-
-  /** Date format override */
-  dateFormat?: string;
-  dateFmt?: string;  // Alias
-
-  /** Time format override */
-  timeFormat?: string;
-  timeFmt?: string;  // Alias
-
-  /** Timezone (e.g., 'UTC', 'America/New_York', or null for local) */
-  timezone?: string | null;
-  tz?: string;  // Alias
+  fmt?: string;              // Combined format override
+  dateFormat?: string;       // Date format override
+  dateFmt?: string;          // Alias for dateFormat
+  timeFormat?: string;       // Time format override
+  timeFmt?: string;          // Alias for timeFormat
+  timezone?: string | null;  // Timezone override
+  tz?: string;               // Alias for timezone
 }
-```
 
-**Priority Order** (highest to lowest):
-1. `cellRendererParams.fmt`
-2. `cellRendererParams.dateFormat` / `timeFormat`
-3. User's settings (localStorage)
-4. Default values
+type FormatKind = 'date' | 'time' | 'datetime';
+```
 
 ---
 
-## 🏗️ Architecture
+## Events
 
-### High-Level Overview
+The library dispatches custom events for format changes:
 
-![Architecture Diagram](./docs/images/architecture.svg)
+- `dt-format-changed` - Dispatched when date/time formats change (same tab)
+- `currency-format-changed` - Dispatched when currency format changes (same tab)
 
-**Components:**
-- **SettingsComponent** - UI for format selection with live preview
-- **SettingsService** - Centralized state management with localStorage persistence
-- **Cell Renderers** - Reactive AG Grid components that auto-update on format changes
-- **BaseFormatRenderer** - Base class handling event listeners and format resolution
-
-### Data Flow
-
-![Data Flow Diagram](./docs/images/data-flow.svg)
-
-**Flow Steps:**
-1. **Input**: Raw cell value (string, number, Date object)
-2. **Resolution**: Determine format (params → localStorage → defaults)
-3. **Parsing**: Convert value to Date object
-4. **Formatting**: Apply format using Angular DatePipe
-5. **Output**: Rendered string in grid cell
-6. **Updates**: Listen for format changes and re-render
-
-### Event System
-
-The library uses two event mechanisms for reactive updates:
-
-1. **`window:storage`** - Native browser event for cross-tab synchronization
-2. **`window:dt-format-changed`** - Custom event for same-tab instant updates
-
-Both are handled automatically by `BaseFormatRenderer` via `@HostListener`.
+Storage events are automatically handled for cross-tab synchronization.
 
 ---
 
-## 🔌 Integration Guide
+## Examples
 
-### Angular + AG Grid Integration
-
-![Integration Diagram](./docs/images/integration.svg)
-
-### Step-by-Step Integration
-
-#### 1. Install Dependencies
-
-```bash
-npm install data-trans-library ag-grid-angular ag-grid-community
-```
-
-#### 2. Import Styles (ag-grid theme)
-
-```scss
-// styles.scss
-@import 'ag-grid-community/styles/ag-grid.css';
-@import 'ag-grid-community/styles/ag-theme-alpine.css';
-```
-
-#### 3. Configure Your Grid
+### Complete AG-Grid Setup
 
 ```typescript
 import { Component } from '@angular/core';
 import { ColDef } from 'ag-grid-community';
-import { DateCellRendererComponent } from 'data-trans-library';
+import {
+  DateCellRendererComponent,
+  DateTimeCellRendererComponent,
+  CurrencyCellRendererComponent
+} from 'ag-grid-formatters';
 
 @Component({
-  selector: 'app-data-grid',
+  selector: 'app-grid',
   template: `
     <ag-grid-angular
-      class="ag-theme-alpine"
       [rowData]="rowData"
       [columnDefs]="columnDefs"
       [defaultColDef]="defaultColDef"
-      style="width: 100%; height: 600px;">
+      class="ag-theme-alpine">
     </ag-grid-angular>
   `
 })
-export class DataGridComponent {
+export class GridComponent {
+  rowData = [
+    { id: 1, name: 'Item 1', price: 100.50, createdAt: new Date(), updatedAt: new Date() },
+    { id: 2, name: 'Item 2', price: 250.75, createdAt: new Date(), updatedAt: new Date() }
+  ];
+
   columnDefs: ColDef[] = [
+    { field: 'id' },
+    { field: 'name' },
     {
-      field: 'id',
-      headerName: 'ID',
-      width: 80
+      field: 'price',
+      cellRenderer: CurrencyCellRendererComponent,
+      cellRendererParams: {
+        currencyCode: 'SAR',
+        currencyLocale: 'ar-SA'
+      }
     },
     {
       field: 'createdAt',
-      headerName: 'Created',
-      cellRenderer: DateCellRendererComponent,
-      width: 150
+      cellRenderer: DateCellRendererComponent
     },
     {
-      field: 'modifiedAt',
-      headerName: 'Modified',
-      cellRenderer: DateOrDateTimeCellRendererComponent,
+      field: 'updatedAt',
+      cellRenderer: DateTimeCellRendererComponent,
       cellRendererParams: {
-        fmt: 'dd/MM/yyyy HH:mm'
-      },
-      width: 180
+        tz: 'Asia/Riyadh'
+      }
     }
   ];
 
   defaultColDef: ColDef = {
     sortable: true,
-    filter: true,
-    resizable: true
+    filter: true
   };
-
-  rowData = [
-    {
-      id: 1,
-      createdAt: '2024-01-15',
-      modifiedAt: '2024-01-15T14:30:00Z'
-    }
-  ];
-}
-```
-
-#### 4. Add Settings UI (Optional)
-
-```typescript
-// app.component.ts
-import { SettingsComponent } from 'data-trans-library';
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [SettingsComponent, DataGridComponent],
-  template: `
-    <header>
-      <h1>My Application</h1>
-      <app-settings></app-settings>
-    </header>
-    <main>
-      <app-data-grid></app-data-grid>
-    </main>
-  `
-})
-export class AppComponent {}
-```
-
----
-
-## 🧪 Testing
-
-The library includes comprehensive tests. Run them with:
-
-```bash
-# Unit tests
-ng test grid-formatters
-
-# Build the library
-ng build grid-formatters
-
-# Lint
-ng lint grid-formatters
-```
-
-### Testing Your Implementation
-
-```typescript
-import { TestBed } from '@angular/core/testing';
-import { SettingsService } from 'data-trans-library';
-
-describe('Date Formatting', () => {
-  it('should use user-selected format', () => {
-    const service = TestBed.inject(SettingsService);
-    service.setDateFormat('dd/MM/yyyy');
-    expect(service.getDateFormat()).toBe('dd/MM/yyyy');
-  });
-});
-```
-
----
-
-## 📚 API Reference
-
-### Components
-
-#### `DateCellRendererComponent`
-Renders date-only values.
-
-**Kind:** `'date'`  
-**Default Format:** `'yyyy-MM-dd'`
-
-#### `TimeCellRendererComponent`
-Renders time-only values.
-
-**Kind:** `'time'`  
-**Default Format:** `'HH:mm'`
-
-#### `DateOrDateTimeCellRendererComponent`
-Renders combined date and time.
-
-**Kind:** `'datetime'`  
-**Default Format:** `'yyyy-MM-dd HH:mm'`
-
-#### `CurrencyCellRendererComponent`
-Renders currency values with locale support.
-
-**Parameters:**
-- `currencyCode`: Currency code (e.g., 'USD', 'EUR')
-- `locale`: Locale string (e.g., 'en-US', 'de-DE')
-
-#### `SettingsComponent`
-Standalone UI component for format selection.
-
-**Features:**
-- Date format dropdown
-- Time format dropdown
-- Live preview
-- Apply button
-
-### Services
-
-#### `SettingsService`
-
-```typescript
-class SettingsService {
-  // Available formats
-  dateFormats: string[];
-  dateTimeFormats: string[];
-
-  // Getters
-  getDateFormat(): string;
-  getDateTimeFormat(): string;
-
-  // Setters (validates and persists to localStorage)
-  setDateFormat(format: string): void;
-  setDateTimeFormat(format: string): void;
-}
-```
-
-### Types
-
-```typescript
-// Format kind
-type FormatKind = 'date' | 'time' | 'datetime';
-
-// Cell renderer parameters
-interface BaseFormatParams<TData = any> extends ICellRendererParams<TData> {
-  fmt?: string;
-  dateFormat?: string;
-  dateFmt?: string;
-  timeFormat?: string;
-  timeFmt?: string;
-  timezone?: string | null;
-  tz?: string;
 }
 ```
 
 ---
 
-## 🗺️ Roadmap
+## Browser Support
 
-### Coming Soon
-
-- 🌍 **Extended Locale Support** - More pre-configured date/time formats for different regions
-- 📱 **Mobile-Optimized Settings UI** - Touch-friendly format picker
-- 🎨 **Theming Support** - Customizable Settings component styling
-- 📊 **More Cell Renderers** - Percentage, Boolean, Custom icons
-- 🔄 **RxJS Observables** - Reactive format change streams for advanced use cases
-- 🌐 **i18n Integration** - Angular i18n/l10n support
-- 📝 **Custom Format Validator** - User-defined format patterns
-- ⚡ **Performance Metrics** - Built-in performance monitoring
-- 🎯 **AG Grid v33+ Support** - Compatibility with upcoming AG Grid versions
-- 📦 **Ivy Compiler Optimizations** - Smaller bundle sizes
-
-### Future Considerations
-
-- PrimeNG DataTable integration
-- Support for other grid libraries (Kendo, Syncfusion)
-- Format templates (presets for common use cases)
-- User-defined format storage (custom formats)
-- Export functionality (maintain formats in exports)
+This library requires modern browsers with support for:
+- ES2022 features
+- localStorage API
+- Custom Events API
+- Intl API (for currency formatting)
 
 ---
 
-## 🤝 Contributing
+## License
 
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Clone the repo
-git clone https://github.com/AlyaariHazem/my-workspace.git
-cd my-workspace
-
-# Install dependencies
-npm install
-
-# Build the library
-ng build grid-formatters
-
-# Run tests
-ng test grid-formatters
-
-# Watch mode for development
-ng build grid-formatters --watch
-```
+MIT
 
 ---
 
-## 📄 License
+## Contributing
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
-## 🙏 Acknowledgments
-
-- **Angular Team** - For the amazing framework
-- **AG Grid** - For the best data grid in the ecosystem
-- **moment.js & moment-hijri** - For date manipulation and Hijri calendar support
-- **Community Contributors** - Thank you for your feedback and contributions!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-## 📞 Support
+## Support
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/AlyaariHazem/my-workspace/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/AlyaariHazem/my-workspace/discussions)
-- 📖 **Documentation**: [Full Docs](https://github.com/AlyaariHazem/my-workspace/tree/main/projects/grid-formatters)
-
----
-
-## 🌟 Show Your Support
-
-If this library helped you, please give it a ⭐️ on [GitHub](https://github.com/AlyaariHazem/my-workspace)!
-
----
-
-**Made with ❤️ for the Angular community**
+For issues, questions, or feature requests, please open an issue on the [GitHub repository](https://github.com/AlyaariHazem/my-workspace).
