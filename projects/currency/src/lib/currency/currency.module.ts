@@ -1,4 +1,4 @@
-// projects/grid-formatters/src/lib/settings/settings.module.ts
+// projects/currency/src/lib/currency/currency.module.ts
 import { NgModule } from '@angular/core';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { CommonModule } from '@angular/common';

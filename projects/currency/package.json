@@ -1,0 +1,50 @@
+{
+  "name": "ag-grid-currency-formatter",
+  "version": "0.0.2",
+  "description": "Angular library providing AG-Grid currency cell renderer with multi-currency support, locale-aware formatting, and persistent user preferences",
+  "license": "MIT",
+  "homepage": "https://github.com/AlyaariHazem/my-workspace",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AlyaariHazem/my-workspace.git"
+  },
+  "keywords": [
+    "angular",
+    "ag-grid",
+    "cell-renderer",
+    "currency-formatting",
+    "localization",
+    "multi-currency",
+    "intl",
+    "number-formatting"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^18.2.13 || ^20.0.0",
+    "@angular/core": "^18.2.13 || ^20.0.0",
+    "ag-grid-angular": "^31.3.4 || ^32.0.0",
+    "ag-grid-community": "^31.3.4 || ^32.0.0",
+    "rxjs": "^7.8.0",
+    "primeng": "^20.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/router": {
+      "optional": true
+    },
+    "primeicons": {
+      "optional": true
+    },
+    "primeflex": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "files": [
+    "README.md",
+    "package.json",
+    "fesm2022",
+    "index.d.ts"
+  ]
+}

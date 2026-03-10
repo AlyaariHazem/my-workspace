@@ -1,6 +1,6 @@
 ng build grid-formatters
 cd dist/grid-formatters
-cnpm pack
+npm pack
 
 
 

@@ -13,6 +13,9 @@
       ],
       "hireme-shared": [
         "./dist/hireme-shared"
+      ],
+      "ag-grid-currency-formatter": [
+        "./dist/currency"
       ]
     },
     "noImplicitOverride": true,
@@ -58,6 +61,12 @@
     },
     {
       "path": "./projects/hijri-date/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/currency/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/currency/tsconfig.spec.json"
     }
   ]
 }

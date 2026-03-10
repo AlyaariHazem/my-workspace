@@ -14,7 +14,7 @@ export class CurrencyService {
   // Special "no currency" option
   private readonly NONE: CurrencyOption = { code: null, locale: null, label: '— None —' };
 
-  // Available currencies (put NONE first so it’s the default)
+  // Available currencies (put NONE first so it's the default)
   readonly currencies: CurrencyOption[] = [
     this.NONE,
     { code: 'USD', locale: 'en-US', label: 'USD — US Dollar' },
