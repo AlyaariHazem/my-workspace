@@ -1,6 +1,6 @@
 {
   "name": "ag-grid-currency-formatter",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Angular library providing AG-Grid currency cell renderer with multi-currency support, locale-aware formatting, and persistent user preferences",
   "license": "MIT",
   "homepage": "https://github.com/AlyaariHazem/my-workspace",
