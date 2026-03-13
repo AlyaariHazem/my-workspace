@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# --- TASKWRITER START ---
+
+N8N_URL="https://datatrnas.app.n8n.cloud/webhook-test/weekly-log"
+
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || exit 0
+REPO_NAME="${REPO_ROOT##*/}"
+
+AUTHOR="$(git config user.name)"
+DATE="$(git log -1 --format=%cd --date=short)"
+BRANCH="$(git branch --show-current)"
+
+COMMIT_TITLE="$(git show -s --format=%s HEAD | tr -d '\r')"
+COMMIT_DESC="$(git show -s --format=%b HEAD | tr -d '\r')"
+
+# ignore short commit messages
+TRIMMED=$(echo "$COMMIT_TITLE" | tr -d '[:space:]')
+LEN=${#TRIMMED}
+
+if [ "$LEN" -le 2 ]; then
+  echo "Commit message too short. Skipping logging."
+  exit 0
+fi
+
+json_escape() { printf "%s" "$1" | sed 's/\\/\\\\/g; s/"/\\"/g'; }
+
+PAYLOAD="{
+\"name\":\"$(json_escape "$AUTHOR")\",
+\"date\":\"$(json_escape "$DATE")\",
+\"module\":\"$(json_escape "$REPO_NAME")\",
+\"branch\":\"$(json_escape "$BRANCH")\",
+\"task\":\"$(json_escape "$COMMIT_TITLE")\",
+\"description\":\"$(json_escape "$COMMIT_DESC")\"
+}"
+
+curl -sS -X POST "$N8N_URL" \
+-H "Content-Type: application/json" \
+-d "$PAYLOAD" >/dev/null 2>&1 || true
+
+# --- TASKWRITER END ---
